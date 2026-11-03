@@ -37,6 +37,27 @@ miles = kilometers / MILES_TO_KILOMETERS
 console.log(`${kilometers} km is ${miles.toFixed(2)} mi`)
 
 // P10 P11
+let inches, centimeters;
+const INCHES_TO_CENTIMETERS = 2.54;
+inches = 100;
+centimeters = inches * INCHES_TO_CENTIMETERS
+console.log(`${inches} in is ${centimeters} cm`)
+centimeters = 100
+inches = centimeters / INCHES_TO_CENTIMETERS
+console.log(`${centimeters} cm is ${inches.toFixed(2)} in`)
+
+// P12 P13
+let yards, meters;
+const YARDS_TO_METERS = 0.9144;
+yards = 100;
+meters = yards * YARDS_TO_METERS;
+console.log(`${yards} yd is ${meters} m`);
+meters = 100;
+yards = meters / YARDS_TO_METERS;
+console.log(`${meters} m is ${yards.toFixed(2)} yd`);
+
+//
+
 
 
 
