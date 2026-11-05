@@ -33,8 +33,8 @@ console.log(arrowTulo(5, 5));
 //jako
 function jako(a, b) {
     if (b === 0) {
-       return 'Nollalla ei voi jakaa'
-    } 
+        return 'Nollalla ei voi jakaa'
+    }
     else {
         return a / b;
     }
@@ -42,7 +42,7 @@ function jako(a, b) {
 console.log(jako(0, 5));
 console.log(jako(5, 0))
 
-const arrowJako = (a ,b) => {
+const arrowJako = (a, b) => {
     if (b === 0) {
         return 'Nollalla ei voi jakaa';
     }
@@ -67,7 +67,7 @@ const arvosana = (pisteet) => {
         return 'Hyvä'
     }
 
-    else if (pisteet >= 90 && pisteet <=100) {
+    else if (pisteet >= 90 && pisteet <= 100) {
         return 'Kiitettävä'
     }
 
@@ -88,7 +88,7 @@ console.log(arvosana(1000));
 
 //toinen ratkaisu 
 const arvosanaB = (pisteet) => {
-    if (pisteet < 0 || pisteet > 100 ) {
+    if (pisteet < 0 || pisteet > 100) {
         return 'Virheelliset pisteet';
     }
     else if (pisteet < 50) {
@@ -97,7 +97,7 @@ const arvosanaB = (pisteet) => {
     else if (pisteet < 70) {
         return 'Tyydyttävä';
     }
-    else if (pisteet <90) {
+    else if (pisteet < 90) {
         return 'Hyvä'
     }
     else {
@@ -117,3 +117,11 @@ console.log(arvosanaB(100));
 console.log(arvosanaB(-1));
 console.log(arvosanaB(1000));
 
+//harjoitus 3: kertotaulufunktio
+
+const kertotaulu = (luku, raja = 10) => {
+    for (let i = 1; i <= raja; i++) {
+        console.log(luku + ' × ' + i + ' = ' + luku * i)
+    }
+}
+console.log(kertotaulu(8))
