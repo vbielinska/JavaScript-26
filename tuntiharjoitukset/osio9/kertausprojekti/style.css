@@ -1,0 +1,14 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+}
+article {
+    padding: 1rem;
+}
+.active {
+    background-color: hsla(135, 100%, 50%, 0.492);
+}
+.inactive {
+    background-color: hsla(0, 100%, 50%, 0.492);
+}
