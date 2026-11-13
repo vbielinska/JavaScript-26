@@ -1,4 +1,4 @@
-// Harjoitus 1
+// Harjoitus 1: Tuotelista
 
 /*Используйте массив товаров со слайда: мышь (Hiiri, цена 25, остаток 4), монитор (Näyttö, цена 240, остаток 0), кабель (Kaapeli, цена 12, остаток 7).
 1. Отфильтруйте: выберите товары, у которых остаток больше 0.
@@ -21,7 +21,7 @@ console.log(availableNames)
 const increasedPrices = availableProducts.map(product => (product.price * 1.255).toFixed(2));
 console.log(increasedPrices)
 
-//Harjoitus 2 
+//Harjoitus 2: Pisteanalyysi
 
 /* Используйте массив:
 [60, 80, 95, 70, 85, 90]
@@ -45,5 +45,13 @@ console.log(hasAtLeast95)
 const areInRange = scores.every(score => score >= 0 && score <= 100);
 console.log(areInRange)
 
-//harjoitus 3 
-/* */
+//harjoitus 3: Opiskelijarekisteri
+
+/* 
+Используйте массив студентов со слайда: Аино (`82`, активна), Мика (`64`, не активен), Сара (`78`, активна).
+1. **`filter`:** выберите активных студентов.
+2. **`map`:** сформируйте для них строки вида `Имя – баллы p`.
+3. **`reduce`:** сложите баллы активных студентов. Разделите сумму на их количество, если оно больше нуля.
+4. **Challenge:** найдите студентов с `id` 2 и `id` 99 методом `find()`. Сообщите, если студент не найден.
+**Проверьте:** среднее активных студентов — `80`. */
+
