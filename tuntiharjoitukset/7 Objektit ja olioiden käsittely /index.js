@@ -4,14 +4,14 @@
 2. Измените возраст на 21 и добавьте pisteet со значением 82.
 3. Добавьте метод esittele(), который выводит сведения о студентке.
 4. Challenge: добавьте вложенный объект yhteystiedot и прочитайте из него электронную почту безопасно с optional chaining. */
-
+console.log('Harjoitus 1')
 const opiskelija = {
     nimi: 'Aino',
     ika: 20,
     ala: 'Ohjelmistokehitys',
     aktiivinen: true,
     esittele() {
-        console.log(`Nimi ${this.nimi}, ikä:${this.ika}, ala: ${this.ala}, aktiivinen:${this.aktiivinen}, pisteet: ${this.pisteet}`);
+        console.log(`Nimi: ${this.nimi}, ikä:${this.ika}, ala: ${this.ala}, aktiivinen:${this.aktiivinen}, pisteet: ${this.pisteet}`);
     },
     yhteystiedot: {
         sahkoposti: "aino@example.com",
@@ -36,44 +36,113 @@ console.log(sahkoposti);
 3. Создайте новый массив, где цена товара с id 2 равна 19.90. Исходные данные сохраните.
 4. Challenge: отфильтруйте товары с saldo > 0 и составьте текстовые строки с названиями. toFixed(2) превращает цену в строку с двумя знаками после запятой. */
 
-const tuotteet = [
+console.log('Harjoitus 2')
+const products = [
     {
         id: 1,
-        nimi: 'näyttö',
-        hinta: 300,
+        name: 'näyttö',
+        price: 300,
         saldo: 5
     },
     {
         id: 2,
-        nimi: 'näppäimistö',
-        hinta: 50,
+        name: 'näppäimistö',
+        price: 50,
         saldo: 15
     },
     {
         id: 3,
-        nimi: 'hiiri',
-        hinta: 10,
+        name: 'hiiri',
+        price: 10,
         saldo: 20
     },
     {
         id: 4,
-        nimi: 'kuulokkeet',
-        hinta: 120,
+        name: 'kuulokkeet',
+        price: 120,
         saldo: 0
     }
 ];
+console.table(products)
 
-const löytynyt = tuotteet.find(t => t.id === 2);
-console.log(löytynyt?.nimi);
-
-const tuote99 = tuotteet.find(t => t.id === 99);
-if (tuote99) {
-    console.log(tuote99.nimi);
+function findProduct(input) {
+   const product = products.find(product => product.id === input);
+    if (product) {
+        console.log(`Product with id ${input} is ${product.name}.`)
+    }
+    else {
+        console.log(`Product with id ${input} is not found.`)
+    }
 }
-else {
-    console.log("Tuotetta ei läydy");
+findProduct(2); //Product with id 2 is näppäimistö.
+findProduct(99); //Product with id 99 is not found.
+
+const update = products.map(p => p.id === 2 ? {...p, price: 19.90} : p);
+console.table(update)
+/*  
+    products.map(...) проходит по каждому товару и создаёт новый массив.
+    p — текущий товар на очередном шаге.
+    p.id === 2 проверяет, товар ли это с id 2.
+    Знак ? начинает сокращённую запись условия:
+   - если условие истинно, выполняется часть до :;
+   - если ложно — часть после :.
+    { ...p, price: 19.90 } создаёт копию товара p. ...p копирует его свойства, а price: 19.90 задаёт копии новую цену.
+    Последнее p означает: если это не товар с id 2, добавить в новый массив текущий товар без изменений.
+    const update = сохраняет новый массив в переменную update.
+*/
+
+const availableProducts = products.filter(p => p.saldo > 0);
+const availableNames = availableProducts.map (p => `${p.name} — ${p.price.toFixed(2)}`
+);
+console.log(availableNames.join("\n"))
+
+/* 
+"\n" — символ переноса строки.
+*/
+
+//harjoitus 3
+
+/* Создайте объект;
+1. Извлеките `teema` и `kieli` в отдельные переменные с помощью деструктуризации.
+2. Извлеките размер шрифта с значением по умолчанию `16`. Проверьте также варианты `20` и `null`.
+3. Извлеките `id` отдельно, а остальные настройки соберите в новый объект с помощью rest.
+4. **Challenge:** создайте функцию, которая получает объект настроек и применяет деструктуризацию прямо в списке параметров.
+*/
+
+console.log('harjoitus 3')
+const settings = {
+    id: 1,
+    theme: 'dark',
+    language: 'fi'
+
 }
 
 
-console.table(tuotteet)
+// 1. Extract theme and language
+const { theme, language } = settings;
+console.log(theme);
+console.log(language);
 
+// 2. Extract fontSize with a default value
+const { fontSize: defaultFontSize = 16 } = settings;
+console.log(defaultFontSize); // 16
+
+const settingsWith20 = { ...settings, fontSize: 20 };
+const { fontSize: size20 = 16 } = settingsWith20;
+console.log(size20); // 20
+
+const settingsWithNull = { ...settings, fontSize: null };
+const { fontSize: sizeNull = 16 } = settingsWithNull;
+console.log(sizeNull); // null
+
+// 3. Extract id and collect the remaining properties
+const { id, ...otherSettings } = settings;
+console.log(id);            // 1
+console.log(otherSettings); // { theme: "dark", language: "fi" }
+
+// 4. Destructure the settings object in the function parameters
+function displaySettings({ id, theme, language, fontSize = 16 }) {
+  console.log({ id, theme, language, fontSize });
+}
+
+displaySettings(settings);
