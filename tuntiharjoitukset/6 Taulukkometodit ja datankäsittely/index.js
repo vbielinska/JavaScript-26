@@ -1,57 +1,88 @@
 // Harjoitus 1: Tuotelista
 
-/*Используйте массив товаров со слайда: мышь (Hiiri, цена 25, остаток 4), монитор (Näyttö, цена 240, остаток 0), кабель (Kaapeli, цена 12, остаток 7).
-1. Отфильтруйте: выберите товары, у которых остаток больше 0.
-2. Преобразуйте: составьте массив только из названий доступных товаров.
-3. Challenge: получите цены доступных товаров с увеличением на 25,5%. Это процент для упражнения. */
-
 const products = [
     { name: "Hiiri", price: 25, stock: 4 },
     { name: "Näyttö", price: 240, stock: 0 },
     { name: "Kaapeli", price: 12, stock: 7 }
 ];
 
-// Выбираем товары, которые есть в наличии
+// выбери товары у которых остаток больше 0 
 const availableProducts = products.filter(product => product.stock > 0);
 console.log(availableProducts);
-// Получаем только их названия
+/* [
+  { name: 'Hiiri', price: 25, stock: 4 },
+  { name: 'Kaapeli', price: 12, stock: 7 }
+] */
+
+// получи массив тольео из названий доступных имен
 const availableNames = availableProducts.map(product => product.name);
-console.log(availableNames)
-// Увеличиваем их цены на 25,5%
+console.log(availableNames) // [ 'Hiiri', 'Kaapeli' ]
+
+// Увеличь их цены на 25,5%
 const increasedPrices = availableProducts.map(product => (product.price * 1.255).toFixed(2));
-console.log(increasedPrices)
+console.log(increasedPrices)// [ '31.37', '15.06' ]
 
 //Harjoitus 2: Pisteanalyysi
 
-/* Используйте массив:
-[60, 80, 95, 70, 85, 90]
-В задании входные значения — целые числа.
-1. Сумма: сложите баллы с помощью reduce().
-2. Boolean: с помощью some() проверьте, набрал ли кто-нибудь не меньше 95.
-3. Проверка диапазона: с помощью every() проверьте, находятся ли все баллы между 0 и 100.
-4. Challenge: найдите среднее значение и посчитайте результаты не ниже 70.*/
+const scores = [60, 80, 95, 70, 85, 90];
+if (scores.length === 0) {
+    console.log('No scores')
+}
+else {
+    const total = scores.reduce((sum, score) => sum + score, 0);
+    const hasAtLeast95 = scores.some(score => score >= 95);
+    const areInRange = scores.every(score => score >= 0 && score <= 100);
+    const average = total / scores.length
+    const scoresSorted = scores.toSorted((a, b) => a - b);
+    const countAbove70 = scores.filter(score => score >= 70).length;
+
+    console.log("Sum:", total);                       //Sum: 480
+    console.log("Has score at least 95:", hasAtLeast95); //Has score at least 95: true
+    console.log("All scores in range:", areInRange);  //All scores in range: true
+    console.log("Average:", average);                 // Average: 80
+    console.log("Sorted:", scoresSorted) // Sorted: [ 60, 70, 80, 85, 90, 95 ]
+    console.log("Scores at least 70:", countAbove70); // Scores at least 70: 5
+
+}
 
 
-//сумма баллов
-const scores = [60, 80., 95, 70, 85, 90];
-const total = scores.reduce((sum, score) => sum + score, 0);
-console.log(total)
 
-// Есть ли результат не ниже 95
-const hasAtLeast95 = scores.some(score => score >= 95)
-console.log(hasAtLeast95)
-
-// Все ли баллы в диапазоне от 0 до 100
-const areInRange = scores.every(score => score >= 0 && score <= 100);
-console.log(areInRange)
 
 //harjoitus 3: Opiskelijarekisteri
 
-/* 
-Используйте массив студентов со слайда: Аино (`82`, активна), Мика (`64`, не активен), Сара (`78`, активна).
-1. **`filter`:** выберите активных студентов.
-2. **`map`:** сформируйте для них строки вида `Имя – баллы p`.
-3. **`reduce`:** сложите баллы активных студентов. Разделите сумму на их количество, если оно больше нуля.
-4. **Challenge:** найдите студентов с `id` 2 и `id` 99 методом `find()`. Сообщите, если студент не найден.
-**Проверьте:** среднее активных студентов — `80`. */
+const students = [
+    { id: 1, name: "Aino", score: 82, active: true },
+    { id: 2, name: "Mika", score: 64, active: false },
+    { id: 3, name: "Sara", score: 78, active: true }
+];
 
+// выбирать активных студентов
+const activeStudents = students.filter(student => student.active);
+console.log(activeStudents)
+
+// преобразовать массив в строку
+const activeNames = activeStudents.map(student => `${student.name} – ${student.score} p`);
+console.log(activeNames.join(', '))
+
+// сложить баллы активных студентов , разделить сумму на их количество, если оно больше нуля
+const scoreSum = activeStudents.reduce((sum, student) => sum + student.score, 0);
+console.log(scoreSum) //160
+if (activeStudents.length > 0) {
+    const scoreAverage = scoreSum / activeStudents.length
+    console.log(scoreAverage); //80
+}
+
+//поиск студентов по id 
+function findStudentByID(inputId) {
+    const student = students.find(student => student.id === inputId);
+
+    if (student) {
+        console.log(student.name);
+    }
+    else {
+        console.log(`Student with id ${inputId} not found`)
+    }
+}
+
+findStudentByID(2); // Mika
+findStudentByID(99); // Student with id 99 not found
