@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapahtumat ja käyttäjän vuorovaikutus</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Tapahtumat ja käyttäjän vuorovaikutus</h1>
+    <h2>Laskuri</h2>
+    <button id="minus">-</button>
+    <span id="count">0</span>
+    <button id="plus">+</button>
+
+    <h2>Live-esikatselu</h2>
+    <label>
+        Nimi
+        <input id="name">
+    </label>
+
+    <p>Hei, <span id="preview">vieras</span>!</p>
+    <p>Characters: <span id="charCount">0</span></p>
+
+    <h2>To-Do list</h2>
+    <ul id="todo-list">
+        <li>
+             <p>Buy milk</p>
+            <button data-action="toggle">Complete</button>
+            <button data-action="delete">Delete</button>
+        </li>
+        <li>
+             <p>Prepare dinner</p>
+            <button data-action="toggle">Complete</button>
+            <button data-action="delete">Delete</button>
+        </li>
+        <li>
+            <p>Clean house</p> 
+            <button data-action="toggle">Complete</button>
+            <button data-action="delete">Delete</button>
+        </li>
+    </ul>
+
+</body>
+
+</html>
